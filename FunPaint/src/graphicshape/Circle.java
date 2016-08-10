@@ -1,15 +1,19 @@
 package graphicshape;
 
+import com.company.Point;
+
 /**
  * Created by Hackeru on 27/07/2016.
  */
 public class Circle extends Shape {
     private int radius; //private variable
-    private int xPos, yPos;
+    //private int xPos, yPos; // we replace with Point
+    private Point center;
 
-    public Circle(int xPos, int yPos,int radius){
-        this.xPos = xPos;
-        this.yPos = yPos;
+    public Circle(Point center,int radius){
+        /*this.xPos = xPos;
+        this.yPos = yPos;*/
+        this.center = center;
         setRadius(radius);
     }
 
@@ -28,7 +32,7 @@ public class Circle extends Shape {
     //instead we do this code, using what we learned:
 
     public Circle(int r){
-        this(10,10,r);
+        this(new Point(10,10),r);
     }
     // we use this only in constructors, in regular functions gotta use this.
     public Circle(){
@@ -39,9 +43,26 @@ public class Circle extends Shape {
 
     @Override
     public String toString() {
-        return "center = ( " + xPos + "," + yPos + ") and radius = " +radius;
+        return "center =  " + center + " and radius = " + radius;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if(obj == null)
+            return false;
+        if(obj == this)
+            return true;
+        if(obj instanceof Circle){
+            Circle other = (Circle)obj;
+            return other.center.equals(this.center) && other.radius ==this.radius;
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return center.hashCode() ^ radius; // circle turns into an int and we make it different from radius, that is the purpose of the ^.
+    }
 
     public int getRadius() {
         return radius;

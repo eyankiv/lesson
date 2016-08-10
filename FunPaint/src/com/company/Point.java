@@ -22,8 +22,23 @@ public class Point {
     }
 
     @Override
+    public boolean equals(Object obj) {
+        if(obj == null)
+            return false;
+        if (this == obj)
+            return true;
+        if(obj instanceof Point){
+            Point other = (Point)obj;
+            return this.x == other.x && this.y == other.y;
+            }
+            return false;
+        }
+
+
+
+    @Override
     public String toString() {
-        return "center = ( " + x + "," + y + ") and radius = " +r;
+        return "center = ( " + x + "," + y + ") and radius = ";// +r;
     }
 
     public int getY() {
