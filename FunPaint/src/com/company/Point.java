@@ -21,6 +21,11 @@ public class Point {
         this.x = x;
     }
 
+    @Override
+    public String toString() {
+        return "center = ( " + x + "," + y + ") and radius = " +r;
+    }
+
     public int getY() {
         return y;
     }
